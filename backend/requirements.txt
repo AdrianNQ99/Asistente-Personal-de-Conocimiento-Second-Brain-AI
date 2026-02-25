@@ -1,0 +1,41 @@
+# =============================================================
+# Second Brain AI - Dependencias del Backend
+# =============================================================
+# Instala con: pip install -r requirements.txt
+# Se recomienda usar un entorno virtual (venv) antes de instalar.
+# =============================================================
+
+# --- Framework Web ---
+fastapi==0.115.0          # Framework principal para la API
+uvicorn[standard]==0.30.0 # Servidor ASGI para correr FastAPI
+
+# --- Base de Datos ---
+sqlalchemy==2.0.35        # ORM para interactuar con la base de datos
+asyncpg==0.29.0           # Driver async para PostgreSQL
+alembic==1.13.2           # Migraciones de base de datos
+
+# --- Validación y Serialización ---
+pydantic==2.9.0           # Validación de datos (ya incluido con FastAPI)
+pydantic-settings==2.5.0  # Manejo de configuración con .env
+
+# --- Autenticación ---
+python-jose[cryptography]==3.3.0  # Manejo de JWT tokens
+passlib[bcrypt]==1.7.4             # Hashing de contraseñas
+python-multipart==0.0.9            # Para form data (login)
+
+# --- IA y NLP (agregar cuando llegues al Paso 8) ---
+# openai==1.45.0            # API de OpenAI
+# langchain==0.3.0          # Framework para LLMs
+# sentence-transformers==3.0.0  # Embeddings locales
+
+# --- Búsqueda Vectorial (agregar cuando llegues al Paso 9) ---
+# faiss-cpu==1.8.0          # Búsqueda vectorial local
+
+# --- Utilidades ---
+python-dotenv==1.0.1      # Cargar variables de entorno desde .env
+httpx==0.27.2             # Cliente HTTP async (para tests y llamadas externas)
+
+# --- Testing (agregar cuando llegues al Paso 10) ---
+# pytest==8.3.3
+# pytest-asyncio==0.24.0
+# httpx==0.27.2             # Ya listado arriba, se usa también en tests
