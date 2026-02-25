@@ -1,0 +1,2 @@
+# Asistente-Personal-de-Conocimiento-Second-Brain-AI-
+La app actúa como un "segundo cerebro" digital: permite al usuario almacenar notas, enlaces web, documentos (PDFs, imágenes, etc.) y cualquier idea suelta. La IA no solo organiza todo, sino que analiza el contenido para generar resúmenes, encontrar conexiones entre ideas y sugerir acciones como recordatorios o tareas basadas en patrones detectados
