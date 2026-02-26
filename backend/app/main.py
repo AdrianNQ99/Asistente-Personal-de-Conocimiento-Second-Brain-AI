@@ -20,29 +20,48 @@ PASO 1: Implementa este archivo siguiendo las instrucciones
 
 # TODO 1.1: Importar FastAPI
 # from fastapi import FastAPI
+from fastapi import FastAPI
+
 
 # TODO 1.2: Importar CORSMiddleware para permitir peticiones del frontend
 # from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.cors import CORSMiddleware
 
 # TODO 1.3: Importar la configuración (la crearás en core/config.py)
 # from app.core.config import settings
+from app.core.config import settings
+
 
 # TODO 1.4: Importar el router principal (lo crearás en api/v1/router.py)
 # from app.api.v1.router import api_router
+from app.api.v1.router import api_router
+
 
 
 # TODO 1.5: Crear la instancia de FastAPI
 # Pista: app = FastAPI(title=..., version=..., description=...)
 # Docs: https://fastapi.tiangolo.com/tutorial/metadata/
-
+app = FastAPI(
+    title="Second Brain AI API",
+    version="1.0.0",
+    description="API para gestionar el Second Brain AI - notas, tareas, proyectos y más."
+)
 
 # TODO 1.6: Configurar CORS middleware
 # Pista: app.add_middleware(CORSMiddleware, allow_origins=[...], ...)
 # Docs: https://fastapi.tiangolo.com/tutorial/cors/
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=settings.CORS_ORIGINS,  # Lista de orígenes permitidos (frontend)
+    allow_credentials=True,
+    allow_methods=["*"],  # Permitir todos los métodos (GET, POST, etc.)
+    allow_headers=["*"],  # Permitir todos los headers
+)
 
 
 # TODO 1.7: Incluir el router de la API v1
 # Pista: app.include_router(api_router, prefix="/api/v1")
+app.include_router(api_router, prefix="/api/v1")
 
 
 # TODO 1.8: Crear un endpoint raíz de health check
@@ -50,6 +69,11 @@ PASO 1: Implementa este archivo siguiendo las instrucciones
 # async def root():
 #     """Health check - verifica que la API está funcionando."""
 #     return {"status": "ok", "app": "Second Brain AI"}
+@app.get("/")
+async def root():
+    """Health check - verifica que la API está funcionando."""
+    return {"status": "ok", "app": "Second Brain AI"}
+
 
 
 # TODO 1.9: (Opcional) Crear evento de startup
@@ -57,3 +81,8 @@ PASO 1: Implementa este archivo siguiendo las instrucciones
 # async def startup_event():
 #     """Se ejecuta cuando la app inicia. Útil para conectar a la DB."""
 #     pass
+@app.on_event("startup")
+async def startup_event():
+    """Se ejecuta cuando la app inicia. Útil para conectar a la DB."""
+    pass
+
